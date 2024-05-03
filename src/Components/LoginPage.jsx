@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-export default function LoginPage() {
-  const [userName, setUserName] = useState("");
+function LoginPage() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -9,32 +9,33 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (userName === "user" && password === "password") {
+    if (username === "user" && password === "password") {
       setError("");
       setIsSubmitted(true);
     } else {
-      setError("Invalid Username or Password");
+      setError("Invalid username or password");
       setIsSubmitted(false);
     }
   };
+
   return (
     <div>
       <h1>Login Page</h1>
       {isSubmitted ? (
         <div>
-          <p>Welcome {userName}!</p>
+          <p>Welcome, {username}!</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
           {error && <p className="error">{error}</p>}
           <div>
-            <label htmlFor="userName">Username:</label>
+            <label htmlFor="username">Username:</label>
             <input
               type="text"
               id="username"
               placeholder="username"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -49,9 +50,13 @@ export default function LoginPage() {
               required
             />
           </div>
-          <button type="submit">Submit</button>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       )}
     </div>
   );
 }
+
+export default LoginPage;
